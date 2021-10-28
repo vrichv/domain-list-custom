@@ -1,5 +1,9 @@
+# Better Geosite - 根据实际使用体验优化的geosite.dat
+ - 优化tiktok访问
+ - 优化1688访问
+ - 基于 Loyalsoldier/domain-list-custom
+----
 # 简介
-
 基于 [v2fly/domain-list-community#256](https://github.com/v2fly/domain-list-community/issues/256) 的提议，重构 [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community) 的构建流程，并添加新功能。
 
 ## 与官方版 `dlc.dat` 不同之处
