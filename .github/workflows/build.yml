@@ -2,7 +2,7 @@ name: Build geosite.dat
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 21 * * *"
+    - cron: "00 00 * * 5"
   push:
     branches:
       - master
@@ -44,7 +44,9 @@ jobs:
         run: |
           echo "include:geolocation-!cn @cn" >> ./domain-list-community/data/cn
           echo "include:geolocation-cn @!cn" >> ./domain-list-community/data/geolocation-\!cn
-
+          sed -i '/alicdn/d' ./domain-list-community/data/alibaba-ads
+          sed -i '/tiktok/d' ./domain-list-community/data/bytedance
+          
       - name: Get dependencies and run
         if: ${{ env.NeedToSync }}
         run: |
