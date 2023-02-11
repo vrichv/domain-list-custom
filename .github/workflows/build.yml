@@ -27,6 +27,9 @@ jobs:
           fi
           echo "RELEASE_NAME=$upstreamLatestTag" >> $GITHUB_ENV
           echo "TAG_NAME=$upstreamLatestTag" >> $GITHUB_ENV
+          echo "GOOGLE_DOMAINS_URL=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/google.china.conf" >> $GITHUB_ENV
+          echo "APPLE_DOMAINS_URL=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf" >> $GITHUB_ENV
+          
         shell: bash
 
       - name: Checkout codebase
@@ -48,6 +51,9 @@ jobs:
           sed -i '/alicdn/d' ./domain-list-community/data/alibaba-ads
           sed -i '/tiktok/d' ./domain-list-community/data/bytedance
           sed -i '/supercell.com/d' ./domain-list-community/data/tencent-games
+
+          curl -sSL $GOOGLE_DOMAINS_URL | perl -ne '/^server=\/([^\/]+)\// && print "full:$1\n"' > ./community/data/google-cn
+          curl -sSL $APPLE_DOMAINS_URL | perl -ne '/^server=\/([^\/]+)\// && print "full:$1\n"' > ./community/data/apple-cn
           
       - name: Get dependencies and run
         if: ${{ env.NeedToSync }}
