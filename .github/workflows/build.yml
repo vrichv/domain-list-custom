@@ -52,8 +52,8 @@ jobs:
           sed -i '/tiktok/d' ./domain-list-community/data/bytedance
           sed -i '/supercell.com/d' ./domain-list-community/data/tencent-games
 
-          curl -sSL $GOOGLE_DOMAINS_URL | perl -ne '/^server=\/([^\/]+)\// && print "full:$1\n"' > ./community/data/google-cn
-          curl -sSL $APPLE_DOMAINS_URL | perl -ne '/^server=\/([^\/]+)\// && print "full:$1\n"' > ./community/data/apple-cn
+          curl -sSL $GOOGLE_DOMAINS_URL | perl -ne '/^server=\/([^\/]+)\// && print "full:$1\n"' > ./domain-list-community/data/google-cn
+          curl -sSL $APPLE_DOMAINS_URL | perl -ne '/^server=\/([^\/]+)\// && print "full:$1\n"' > ./domain-list-community/data/apple-cn
           
       - name: Get dependencies and run
         if: ${{ env.NeedToSync }}
